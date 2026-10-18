@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thực hành tạo menu ngang</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #263238;
+        }
+
+        /* Menu ngang */
+        #menu {
+            height: 50px;
+            margin: 0;
+            padding: 0;
+            background-color: #222;
+            list-style: none;
+        }
+
+        #menu li {
+            position: relative;
+            display: inline-block;
+            list-style: none;
+        }
+
+        #menu a {
+            display: block;
+            width: 130px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.2s;
+        }
+
+        /* Đổi màu khi rê chuột */
+        #menu a:hover,
+        #menu a:focus {
+            background-color: red;
+            color: white;
+            outline: none;
+        }
+
+        /* Menu con: ẩn mặc định */
+        #menu ul {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 100;
+            min-width: 180px;
+            margin: 0;
+            padding: 0;
+            background-color: #333;
+            list-style: none;
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Các mục bên trong menu con xếp theo chiều dọc */
+        #menu ul li {
+            display: block;
+            width: 100%;
+        }
+
+        #menu ul a {
+            width: 100%;
+            min-width: 180px;
+            text-align: left;
+            padding: 0 18px;
+            white-space: nowrap;
+        }
+
+        /* Hiện menu con khi rê chuột vào mục cha */
+        #menu li:hover > ul,
+        #menu li:focus-within > ul {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        main h1 {
+            color: #222;
+        }
+
+        main p {
+            line-height: 1.8;
+        }
+
+        .note {
+            padding: 16px;
+            margin-top: 24px;
+            border-left: 4px solid #e53935;
+            background-color: #fff1f1;
+        }
+
+        @media (max-width: 600px) {
+            #menu {
+                height: auto;
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            #menu > li {
+                flex: 1 1 50%;
+            }
+
+            #menu > li > a {
+                width: 100%;
+            }
+
+            #menu ul {
+                width: 100%;
+            }
+
+            main {
+                margin: 20px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <ul id="menu">
+        <li><a href="#home">Trang chủ</a></li>
+
+        <li>
+            <a href="#products">Sản phẩm ▾</a>
+            <ul>
+                <li><a href="#laptop">Laptop</a></li>
+                <li><a href="#phone">Điện thoại</a></li>
+                <li><a href="#accessories">Phụ kiện</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="#services">Dịch vụ ▾</a>
+            <ul>
+                <li><a href="#repair">Sửa chữa</a></li>
+                <li><a href="#warranty">Bảo hành</a></li>
+                <li><a href="#support">Hỗ trợ kỹ thuật</a></li>
+            </ul>
+        </li>
+
+        <li><a href="#news">Tin tức</a></li>
+        <li><a href="#contact">Liên hệ</a></li>
+    </ul>
+
+    <main id="home">
+        <h1>Thực hành tạo menu ngang Dropdown</h1>
+
+        <p>
+            Menu điều hướng được sắp xếp theo chiều ngang bằng CSS.
+            Khi di chuyển chuột đến mục Sản phẩm hoặc Dịch vụ,
+            menu con sẽ xuất hiện bên dưới mục tương ứng.
+        </p>
+
+        <h2 id="products">Sản phẩm</h2>
+        <p id="laptop">Laptop: máy tính xách tay.</p>
+        <p id="phone">Điện thoại: các thiết bị di động.</p>
+        <p id="accessories">Phụ kiện: chuột, bàn phím và tai nghe.</p>
+
+        <h2 id="services">Dịch vụ</h2>
+        <p id="repair">Dịch vụ sửa chữa thiết bị.</p>
+        <p id="warranty">Dịch vụ bảo hành sản phẩm.</p>
+        <p id="support">Dịch vụ hỗ trợ kỹ thuật.</p>
+
+        <h2 id="news">Tin tức</h2>
+        <p>Cập nhật các tin tức công nghệ mới nhất.</p>
+
+        <h2 id="contact">Liên hệ</h2>
+        <p>Email: example@gmail.com</p>
+
+        <div class="note">
+            <strong>Kiến thức quan trọng:</strong>
+            <code>display: inline-block</code> giúp các mục menu chính
+            nằm ngang. <code>visibility: hidden</code> ẩn menu con,
+            còn <code>li:hover &gt; ul</code> hiển thị menu con
+            khi rê chuột vào mục cha.
+        </div>
+    </main>
+
+</body>
+</html>
